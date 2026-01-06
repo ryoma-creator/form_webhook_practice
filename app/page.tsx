@@ -26,9 +26,9 @@ export default function Home() {
     setError("");
     setShowSuccess(false);
 
-    // バリデーション
+    // Validation
     if (!formData.name || !formData.email || !formData.phone) {
-      setError("すべてのフィールドを入力してください");
+      setError("Please fill in all fields");
       setIsSubmitting(false);
       return;
     }
@@ -45,13 +45,13 @@ export default function Home() {
       const result = await response.json();
 
       if (!result.ok) {
-        throw new Error(result.error || "送信に失敗しました");
+        throw new Error(result.error || "Submission failed");
       }
 
       setShowSuccess(true);
       setFormData({ name: "", email: "", phone: "" });
     } catch (err) {
-      setError(err instanceof Error ? err.message : "エラーが発生しました");
+      setError(err instanceof Error ? err.message : "An error occurred");
     } finally {
       setIsSubmitting(false);
     }
@@ -61,12 +61,12 @@ export default function Home() {
     <main className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
       <div className="bg-white rounded-lg shadow-md p-8 w-full max-w-md">
         <h1 className="text-2xl font-bold text-gray-800 mb-6 text-center">
-          お問い合わせフォーム
+          Contact Form
         </h1>
 
         {showSuccess && (
           <div className="mb-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded">
-            送信が完了しました！
+            Submission completed!
           </div>
         )}
 
@@ -82,7 +82,7 @@ export default function Home() {
               htmlFor="name"
               className="block text-sm font-medium text-gray-700 mb-1"
             >
-              お名前 <span className="text-red-500">*</span>
+              Name <span className="text-red-500">*</span>
             </label>
             <input
               type="text"
@@ -100,7 +100,7 @@ export default function Home() {
               htmlFor="email"
               className="block text-sm font-medium text-gray-700 mb-1"
             >
-              メールアドレス <span className="text-red-500">*</span>
+              Email Address <span className="text-red-500">*</span>
             </label>
             <input
               type="email"
@@ -118,7 +118,7 @@ export default function Home() {
               htmlFor="phone"
               className="block text-sm font-medium text-gray-700 mb-1"
             >
-              電話番号 <span className="text-red-500">*</span>
+              Phone Number <span className="text-red-500">*</span>
             </label>
             <input
               type="tel"
@@ -136,7 +136,7 @@ export default function Home() {
             disabled={isSubmitting}
             className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
           >
-            {isSubmitting ? "送信中..." : "送信"}
+            {isSubmitting ? "Submitting..." : "Submit"}
           </button>
         </form>
       </div>
