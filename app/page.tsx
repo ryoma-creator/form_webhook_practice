@@ -61,7 +61,7 @@ export default function Home() {
     <main className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
       <div className="bg-white rounded-lg shadow-md p-8 w-full max-w-md">
         <h1 className="text-2xl font-bold text-gray-800 mb-6 text-center">
-          Contact Form
+          Lead Capture Form
         </h1>
 
         {showSuccess && (
