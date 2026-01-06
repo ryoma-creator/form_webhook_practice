@@ -34,13 +34,7 @@ export default function Home() {
     }
 
     try {
-      const webhookUrl = process.env.NEXT_PUBLIC_WEBHOOK_URL || "";
-      
-      if (!webhookUrl) {
-        throw new Error("Webhook URLが設定されていません");
-      }
-
-      const response = await fetch(webhookUrl, {
+      const response = await fetch("/api/lead", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -48,8 +42,10 @@ export default function Home() {
         body: JSON.stringify(formData),
       });
 
-      if (!response.ok) {
-        throw new Error("送信に失敗しました");
+      const result = await response.json();
+
+      if (!result.ok) {
+        throw new Error(result.error || "送信に失敗しました");
       }
 
       setShowSuccess(true);
